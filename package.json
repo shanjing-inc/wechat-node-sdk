@@ -1,0 +1,92 @@
+{
+  "name": "@shanjing/wechat-node-sdk",
+  "version": "0.1.0",
+  "description": "Modern TypeScript SDK for WeChat server-side APIs.",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "docs",
+    "examples"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "dev": "vitest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
+    },
+    "./mini-app": {
+      "types": "./dist/mini-app/index.d.ts",
+      "import": "./dist/mini-app/index.js"
+    },
+    "./official-account": {
+      "types": "./dist/official-account/index.d.ts",
+      "import": "./dist/official-account/index.js"
+    },
+    "./pay": {
+      "types": "./dist/pay/index.d.ts",
+      "import": "./dist/pay/index.js"
+    },
+    "./work": {
+      "types": "./dist/work/index.d.ts",
+      "import": "./dist/work/index.js"
+    },
+    "./open-platform": {
+      "types": "./dist/open-platform/index.d.ts",
+      "import": "./dist/open-platform/index.js"
+    },
+    "./open-work": {
+      "types": "./dist/open-work/index.d.ts",
+      "import": "./dist/open-work/index.js"
+    },
+    "./channel": {
+      "types": "./dist/channel/index.d.ts",
+      "import": "./dist/channel/index.js"
+    },
+    "./adapters/node": {
+      "types": "./dist/adapters/node/index.d.ts",
+      "import": "./dist/adapters/node/index.js"
+    },
+    "./adapters/astro": {
+      "types": "./dist/adapters/astro/index.d.ts",
+      "import": "./dist/adapters/astro/index.js"
+    },
+    "./adapters/deno": {
+      "types": "./dist/adapters/deno/index.d.ts",
+      "import": "./dist/adapters/deno/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
