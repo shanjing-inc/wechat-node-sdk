@@ -23,7 +23,7 @@ SDK 主体使用 Web 标准 API，包括 `fetch`、`URL`、`Headers`、`TextEnco
 包采用 ESM first 和 `exports` 子路径。推荐外部用户从业务子路径导入：
 
 ```ts
-import { createMiniAppClient } from '@shanjing/wechat-node-sdk/mini-app';
+import { createMiniAppClient } from '@shanjing-inc/wechat-node-sdk/mini-app';
 ```
 
 这样能减少跨模块依赖被打包器提前解析的概率。

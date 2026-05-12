@@ -1,4 +1,4 @@
-# @shanjing/wechat-node-sdk
+# @shanjing-inc/wechat-node-sdk
 
 现代 TypeScript 微信服务端 SDK。当前覆盖 `core`、`mini-app`、`official-account`、`pay`、`work`、`open-platform`、`open-work`、`channel` 的基础能力。
 
@@ -6,7 +6,7 @@
 
 - ESM first，支持 npm 子路径导出
 - 原生 `fetch` HTTP 客户端
-- Web Crypto 优先，Node crypto 通过 `@shanjing/wechat-node-sdk/adapters/node` 引入
+- Web Crypto 优先，Node crypto 通过 `@shanjing-inc/wechat-node-sdk/adapters/node` 引入
 - `CacheStore` 抽象，内置内存缓存
 - `zod` 配置校验
 - `fast-xml-parser` XML 解析和构建
@@ -15,13 +15,13 @@
 ## 安装
 
 ```bash
-pnpm add @shanjing/wechat-node-sdk
+pnpm add @shanjing-inc/wechat-node-sdk
 ```
 
 ## 小程序
 
 ```ts
-import { createMiniAppClient } from '@shanjing/wechat-node-sdk/mini-app';
+import { createMiniAppClient } from '@shanjing-inc/wechat-node-sdk/mini-app';
 
 const miniApp = createMiniAppClient({
   appId: process.env.WECHAT_APP_ID!,
@@ -34,7 +34,7 @@ const session = await miniApp.code2Session('js_code');
 ## 公众号
 
 ```ts
-import { createOfficialAccountClient } from '@shanjing/wechat-node-sdk/official-account';
+import { createOfficialAccountClient } from '@shanjing-inc/wechat-node-sdk/official-account';
 
 const officialAccount = createOfficialAccountClient({
   appId: process.env.WECHAT_APP_ID!,
@@ -47,8 +47,8 @@ const user = await officialAccount.getUserInfo('openid');
 ## 微信支付 API v3
 
 ```ts
-import { createPayClient } from '@shanjing/wechat-node-sdk/pay';
-import { createNodeCryptoAdapter } from '@shanjing/wechat-node-sdk/adapters/node';
+import { createPayClient } from '@shanjing-inc/wechat-node-sdk/pay';
+import { createNodeCryptoAdapter } from '@shanjing-inc/wechat-node-sdk/adapters/node';
 
 const pay = createPayClient({
   appId: process.env.WECHAT_APP_ID!,
@@ -73,7 +73,7 @@ const jsapiParams = await pay.createJsapiPaySign(transaction.prepay_id);
 ## 企业微信
 
 ```ts
-import { createWorkClient } from '@shanjing/wechat-node-sdk/work';
+import { createWorkClient } from '@shanjing-inc/wechat-node-sdk/work';
 
 const work = createWorkClient({
   corpId: process.env.WECHAT_WORK_CORP_ID!,
@@ -91,7 +91,7 @@ await work.sendMessage({
 ## 微信开放平台
 
 ```ts
-import { createOpenPlatformClient } from '@shanjing/wechat-node-sdk/open-platform';
+import { createOpenPlatformClient } from '@shanjing-inc/wechat-node-sdk/open-platform';
 
 const openPlatform = createOpenPlatformClient({
   appId: process.env.WECHAT_OPEN_APP_ID!,
@@ -105,7 +105,7 @@ const preAuthCode = await openPlatform.createPreAuthCode();
 ## 企业微信开放平台
 
 ```ts
-import { createOpenWorkClient } from '@shanjing/wechat-node-sdk/open-work';
+import { createOpenWorkClient } from '@shanjing-inc/wechat-node-sdk/open-work';
 
 const openWork = createOpenWorkClient({
   suiteId: process.env.WECHAT_WORK_SUITE_ID!,
@@ -119,7 +119,7 @@ const preAuthCode = await openWork.getPreAuthCode();
 ## 视频号
 
 ```ts
-import { createChannelClient } from '@shanjing/wechat-node-sdk/channel';
+import { createChannelClient } from '@shanjing-inc/wechat-node-sdk/channel';
 
 const channel = createChannelClient({
   appId: process.env.WECHAT_APP_ID!,

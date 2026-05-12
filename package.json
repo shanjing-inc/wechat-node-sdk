@@ -1,5 +1,5 @@
 {
-  "name": "@shanjing/wechat-node-sdk",
+  "name": "@shanjing-inc/wechat-node-sdk",
   "version": "0.1.0",
   "description": "Modern TypeScript SDK for WeChat server-side APIs.",
   "type": "module",
