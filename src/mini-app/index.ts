@@ -9,6 +9,7 @@ import { FetchHttpClient } from '../core/http/index.js';
 import { AccessTokenManager } from '../core/token/index.js';
 
 export type MiniAppClientOptions = WechatAppConfig & {
+  accessTokenProvider?: () => Promise<string> | string;
   cache?: CacheStore;
   httpClient?: HttpClient;
 };
@@ -33,23 +34,35 @@ export type PhoneNumberResult = {
 
 export class MiniAppClient {
   readonly config: WechatAppConfig;
-  readonly tokenManager: AccessTokenManager;
+  readonly tokenManager: AccessTokenManager | undefined;
+  private readonly accessTokenProvider: (() => Promise<string> | string) | undefined;
   private readonly httpClient: HttpClient;
 
   constructor(options: MiniAppClientOptions) {
     this.config = parseConfig(WechatAppConfigSchema, options);
     const cache = options.cache ?? new MemoryCacheStore();
+    this.accessTokenProvider = options.accessTokenProvider;
     this.httpClient = options.httpClient ?? new FetchHttpClient();
-    this.tokenManager = new AccessTokenManager({
-      appId: this.config.appId,
-      appSecret: this.config.appSecret ?? '',
-      cache,
-      httpClient: this.httpClient,
-      cacheKey: `wechat:mini-app:${this.config.appId}:access-token`
-    });
+    this.tokenManager = this.accessTokenProvider
+      ? undefined
+      : new AccessTokenManager({
+          appId: this.config.appId,
+          appSecret: this.config.appSecret ?? '',
+          cache,
+          httpClient: this.httpClient,
+          cacheKey: `wechat:mini-app:${this.config.appId}:access-token`
+        });
   }
 
   async getAccessToken(): Promise<string> {
+    if (this.accessTokenProvider) {
+      return this.accessTokenProvider();
+    }
+
+    if (!this.tokenManager) {
+      throw new Error('Missing access token manager.');
+    }
+
     return this.tokenManager.getToken();
   }
 
